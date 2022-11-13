@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
+import Shop from "../../pages/shop/Shop";
 import { CartContext } from "./CartContext";
 
 //TODO terminar la implementacion del contexto
-
+  
 const CartProvider = ({ children }) => {
   // esto se puede extraer en un custom hook si se desea
   const [cart, setCart] = useState([]);
@@ -21,15 +22,21 @@ const CartProvider = ({ children }) => {
     } else {
       setCart([...cart, { item, quantity }]);
     }
+    console.log('Cart:',cart)
   };
 
   // funcion para eliminar item del carrito (falta un detalle por agregar)
   const removeItem = (itemId) => {
     const newCart = cart.filter((cartItem) => cartItem.item.id !== itemId);
+    /*PAF Modifico el estado*/ 
+    setCart(newCart);
   };
 
   // funcion para vaciar el carrito (funcion sin implementar)
-  const clear = () => {};
+  const clear = () => {
+    /* PAF: Vacioo el carrito*/
+    setCart([])
+  };
 
   // funcion para verificar si un item ya esta en el carrito (no es necesario agregar nada)
   const isInCart = (itemId) => {
@@ -37,7 +44,16 @@ const CartProvider = ({ children }) => {
   };
 
   // faltan detalles por agregar
-  return <CartContext.Provider value={{}}>{children}</CartContext.Provider>;
+  /*PAF*/
+      return ( 
+        <CartContext.Provider value={{ addItem, removeItem, clear, cart  }}>
+          {children}
+        </CartContext.Provider>);
+};
+
+export const useCart = () => {
+  const { addItem, removeItem, clear } = useContext(CartContext);
+  return { addItem, removeItem, clear };
 };
 
 export default CartProvider;

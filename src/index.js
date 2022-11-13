@@ -5,6 +5,7 @@ import App from "./App";
 import Layout from "./components/layout/Layout";
 import ProductsProvider from "./context/products/ProductsProvider";
 import CartProvider from "./context/cart/CartProvider";
+import AuthProvider from "./auth/AuthProvider";
 
 /* 
 
@@ -40,12 +41,14 @@ import CartProvider from "./context/cart/CartProvider";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <CartProvider>
+    <AuthProvider>
+     <CartProvider>
       <ProductsProvider>
         <Layout>
           <App />
         </Layout>
       </ProductsProvider>
-    </CartProvider>
+     </CartProvider>
+    </AuthProvider>
   </React.StrictMode>
 );

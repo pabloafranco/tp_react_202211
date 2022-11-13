@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import ProductCard from "../../components/product-card/ProductCard";
+import { useCart  } from "../../context/cart/CartProvider";
 import { useProducts } from "../../context/products/ProductsProvider";
 import styles from "./Shop.module.css";
 
 const Shop = () => {
   const products = useProducts();
+  const carts = useCart();
 
+
+ console.log(carts)
+ 
   // TODO es necesario importar el contexto y usar el hook useContext, o bien utilizar una estrategia similar para guardar
   // los productos en el estado que va a ser utilizado para mantener el carrito de compras
-
+  
   // TODO implementar un boton para borrar el item del carrito
 
   // TODO implementar un boton para vaciar el carrito
@@ -32,7 +37,8 @@ const Shop = () => {
             alert(`Agregaste ${product.title} al carrito`);
           }}
         />
-      ))}
+      )
+      )}
     </div>
   );
 };

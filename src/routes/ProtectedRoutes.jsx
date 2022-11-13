@@ -1,8 +1,7 @@
 // TODO implementar hoc para proteger rutas
-
-/* 
-
-import React from 'react'
+import React, { useContext } from 'react'
+import { Navigate } from 'react-router-dom'
+import { AuthContext } from '../auth/AuthContext'
 
 const ProtectedRoutes = ({children}) => {
     
@@ -12,11 +11,11 @@ const ProtectedRoutes = ({children}) => {
         return children
     }
 
-    return <Navigate to="/login" />
+    return <Navigate to="/login" replace={true}/>
 
 }
 
 export default ProtectedRoutes
 
 
-*/
+
